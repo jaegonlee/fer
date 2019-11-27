@@ -1,3 +1,7 @@
+// works on macos, not on windows
+// one webcam source can be used with two applications(fer and processing) on macos
+// run FER_osc.py first
+// python3 FER_osc.py webcam 30
 import netP5.*;
 import oscP5.*;
 import processing.video.*;
