@@ -12,6 +12,7 @@ Follow the [guided tutorial](FER_CNN.ipynb) for neural network training.
 Files Structure:
 - FER_CNN.ipynb - Tutorial to train the CNN
 - FER.py - Uses the pre-trained model to give inferences
+- FER_osc.py - Uses the pre-trained model to give inferences / OSC
 - model.json - Neural network architecture
 - weights.h5 - Trained model weights
 ## Installation
