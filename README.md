@@ -29,6 +29,8 @@ Using Python virtual environment will be advisable.
     
     `pip install keras`
     
+    `pip install python-osc` (for precessing example)
+    
 * For model training,
     `pandas` `numpy` `tensorflow` `keras` `matplotlib` `scikit-learn` `seaborn`
     
