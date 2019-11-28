@@ -28,8 +28,10 @@ Using Python virtual environment will be advisable.
     `pip install tensorflow` (Note here we are installing tensorflow-cpu)
     
     `pip install keras`
-    
-    `pip install python-osc` (for precessing example)
+
+* For processing example
+
+    `pip install python-osc`
     
 * For model training,
     `pandas` `numpy` `tensorflow` `keras` `matplotlib` `scikit-learn` `seaborn`
