@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+
 from keras.models import model_from_json
 import numpy as np
 import cv2
@@ -24,14 +26,14 @@ class FacialExpressionModel(object):
         self.preds = self.loaded_model.predict(img)
         return self.preds#FacialExpressionModel.EMOTIONS_LIST[np.argmax(self.preds)]
 
-parser = argparse.ArgumentParser()
-parser.add_argument("source")
-parser.add_argument("fps")
-args = parser.parse_args()
-cap = cv2.VideoCapture(os.path.abspath(args.source) if not args.source == 'webcam' else 0)
+#parser = argparse.ArgumentParser()
+#parser.add_argument("source")
+#parser.add_argument("fps")
+#args = parser.parse_args()
+cap = cv2.VideoCapture(0)#os.path.abspath(args.source) if not args.source == 'webcam' else 0)
 faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 font = cv2.FONT_HERSHEY_SIMPLEX
-cap.set(cv2.CAP_PROP_FPS, int(args.fps))
+cap.set(cv2.CAP_PROP_FPS, 30)#int(args.fps))
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
@@ -47,6 +49,7 @@ else:
 
 def getdata():
     _, fr = cap.read()
+    fr = cv2.flip(fr, 1)
     gray = cv2.cvtColor(fr, cv2.COLOR_BGR2GRAY)
     # faces = faceCascade.detectMultiScale(gray, 1.3, 5)
     frameOpencvDnn = fr.copy()
@@ -72,6 +75,8 @@ def start_app(cnn):
     while cap.isOpened():
         faces, fr, gray_fr = getdata()
         for (x, y, x2, y2) in faces:
+            if y<0 or x<0:
+                break
             fc = gray_fr[y:y2, x:x2]
             roi = cv2.resize(fc, (48, 48))
             pred = cnn.predict_emotion(roi[np.newaxis, :, :, np.newaxis])
